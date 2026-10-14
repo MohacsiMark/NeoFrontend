@@ -139,3 +139,46 @@ body{
 #szamok{
     color:gold
 }
+
+#koncertLista {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.koncert {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    padding: 20px;
+
+    transition: 0.2s;
+}
+
+.koncert:hover {
+    transform: translateY(-4px);
+    border-color: #ff2d6f;
+}
+
+.koncert h2 {
+    color: white;
+    margin: 0 0 10px 0;
+    font-size: 22px;
+}
+
+.koncert p {
+    color: #ff2d6f;
+    margin: 0;
+    font-size: 15px;
+}
+
+@media (max-width: 700px) {
+    #koncertLista {
+        grid-template-columns: 1fr;
+    }
+}
