@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../css/fomenu.css">
-    <script src="../js/koncertek.js"></script>
     <title>Neoton Família Hivatalos</title>
+    <script src="../js/api.js" defer></script>
 </head>
 <body>
     <header>
@@ -99,9 +98,10 @@
 
     </header>
 
-    <body>
-        <div id="koncertLista"></div>
-    </body>
+<main class="koncertek-tartalom">
+    <h1 class="oldal-cim">Koncertek</h1>
+    <div id="koncertLista">A koncertek betöltése...</div>
+</main>
 
     <footer class="footer">
     <h3>Neoton Família</h3>
@@ -110,5 +110,6 @@
         <li>Telefon: +36 30 921 7950</li>
     </ul>
 </footer>
+<script src="../js/koncertek.js" defer></script>
 </body>
 </html>
