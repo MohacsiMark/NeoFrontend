@@ -1,0 +1,196 @@
+/* ===== Galéria oldal – Neoton Família ===== */
+
+.galeria-tartalom {
+    --galeria-hatter: #120f17;
+    --galeria-kartya: #1d1824;
+    --galeria-arany: #e9b949;
+    --galeria-piros: #c9303f;
+    --galeria-szoveg: #f4eee6;
+    --galeria-halvany: #b5aab8;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px 72px;
+    background: var(--galeria-hatter);
+    color: var(--galeria-szoveg);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Cím */
+.galeria-tartalom .oldal-cim {
+    margin: 0 0 12px;
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--galeria-szoveg);
+}
+
+.galeria-tartalom .oldal-cim::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin: 16px auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--galeria-piros), var(--galeria-arany));
+}
+
+.galeria-bevezeto {
+    max-width: 60ch;
+    margin: 0 auto 40px;
+    text-align: center;
+    line-height: 1.6;
+    color: var(--galeria-halvany);
+}
+
+/* Rács: 3 kép egy sorban, minden kép ugyanakkora */
+.galeria-kepek {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.galeria-elem {
+    margin: 0;
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--galeria-kartya);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.galeria-elem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    cursor: zoom-in;
+    transition: transform 0.45s ease, filter 0.3s ease;
+}
+
+.galeria-elem::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+}
+
+.galeria-elem:hover img {
+    transform: scale(1.06);
+    filter: brightness(1.08);
+}
+
+.galeria-elem:hover::after {
+    border-color: var(--galeria-arany);
+}
+
+/* ===== Nagyítás (lightbox) ===== */
+.nagyitas {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(8, 6, 12, 0.94);
+}
+
+.nagyitas.nyitva {
+    display: flex;
+}
+
+.nagyitas img {
+    max-width: min(92vw, 1100px);
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.nagyitas-bezar,
+.nagyitas-nyil {
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    transition: background 0.2s ease;
+}
+
+.nagyitas-bezar:hover,
+.nagyitas-nyil:hover {
+    background: #c9303f;
+}
+
+.nagyitas-bezar {
+    top: 18px;
+    right: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.nagyitas-nyil {
+    top: 50%;
+    width: 50px;
+    height: 64px;
+    transform: translateY(-50%);
+    border-radius: 8px;
+    font-size: 42px;
+    line-height: 1;
+}
+
+.nagyitas-elozo { left: 14px; }
+.nagyitas-kovetkezo { right: 14px; }
+
+.nagyitas button:focus-visible,
+.galeria-elem img:focus-visible {
+    outline: 3px solid #e9b949;
+    outline-offset: 2px;
+}
+
+/* ===== Reszponzív ===== */
+@media (max-width: 900px) {
+    .galeria-kepek {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 560px) {
+    .galeria-tartalom {
+        padding: 32px 14px 56px;
+    }
+
+    .galeria-kepek {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .nagyitas-nyil {
+        width: 40px;
+        height: 54px;
+        font-size: 34px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .galeria-elem img,
+    .galeria-elem::after {
+        transition: none;
+    }
+
+    .galeria-elem:hover img {
+        transform: none;
+    }
+}
